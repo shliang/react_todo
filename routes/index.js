@@ -22,10 +22,9 @@ module.exports = function(app, models) {
 	});
 	
 	app.put('/todos/:id', function(req, res) {
-		models.Todo.findOne({
+		models.Todo.findOneAndUpdate({
 			_id: req.params.id
-		}, function(err, todo) {
-			// if err throw err;
+		}, req.body, {new: true}, function(err, todo) {
 			res.json(todo);
 		})
 	});
