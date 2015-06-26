@@ -1,11 +1,16 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'models/todo','views/todos/show'], function(Backbone, Todo, TodoShow) {
 	var Router = Backbone.Router.extend({
 		routes: {
 			"": "homepage"
 		},
 		
 		homepage: function() {
-			console.log("home page");
+			var todo = new Todo({_id: "558ba2c71804d67d3678fda0"});
+			todo.fetch();
+			var todoShowView = new TodoShow({
+				model: todo
+			});
+			this._swapView(todoShowView);
 		},
 		
 		_swapView: function(view) {

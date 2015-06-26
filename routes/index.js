@@ -21,6 +21,14 @@ module.exports = function(app, models) {
 		})
 	});
 	
+	app.get('/todos/:id', function(req, res) {
+		models.Todo.findOne({
+			_id: req.params.id
+		}, function(err, todo) {
+			res.json(todo);
+		});
+	});
+	
 	app.put('/todos/:id', function(req, res) {
 		models.Todo.findOneAndUpdate({
 			_id: req.params.id
