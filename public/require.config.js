@@ -19,5 +19,4 @@ require.config({
   }
 });
 
-require('newrelic');
 require(["init"]);
