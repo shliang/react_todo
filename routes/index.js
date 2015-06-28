@@ -36,5 +36,14 @@ module.exports = function(app, models) {
 			res.json(todo);
 		})
 	});
+	
+	app.delete('/todos/:id', function(req, res) {
+		models.Todo.findOneAndRemove({
+			_id: req.params.id
+		}, function(err, todo) {
+			if (err) throw err;
+			res.json(todo);
+		})
+	});
 	console.log("Routes loaded successfully");
 }

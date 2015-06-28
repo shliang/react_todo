@@ -1,17 +1,14 @@
 define(['backbone', 'models/todo'], function(Backbone, Todo) {
 	return Backbone.View.extend({
 		className: 'todo',
-		template: _.template("<p><%= todo.get('content') %></p>"),
 		
 		initialize: function () {
-			this.listenTo(this.model, 'sync', this.render);
+			this.element = React.createElement(TodoItem, {todo: this.model});
 		},
 		
 		render: function() {
-			var content = this.template({
-				todo: this.model
-			});
-			this.$el.html(content);	
+			console.log("render once");
+			React.render(this.element ,this.el)
 			return this;
 		}
 	});

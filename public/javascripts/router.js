@@ -1,16 +1,17 @@
-define(['backbone', 'models/todo','views/todos/show'], function(Backbone, Todo, TodoShow) {
+define(['backbone', 'models/todo', 'collections/todos','views/root/root'], function(Backbone, Todo, Todos, RootRoot) {
 	var Router = Backbone.Router.extend({
 		routes: {
 			"": "homepage"
 		},
 		
 		homepage: function() {
-			var todo = new Todo({_id: "558ba2c71804d67d3678fda0"});
-			todo.fetch();
-			var todoShowView = new TodoShow({
-				model: todo
+			var allTodos = new Todos();
+			allTodos.fetch();
+			var rootView = new RootRoot({
+				collection: allTodos,
+				todoModel:  Todo
 			});
-			this._swapView(todoShowView);
+			this._swapView(rootView);
 		},
 		
 		_swapView: function(view) {
